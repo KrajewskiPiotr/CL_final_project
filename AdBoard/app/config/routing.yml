@@ -1,0 +1,7 @@
+ab_ad_board:
+    resource: "@ABAdBoardBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
