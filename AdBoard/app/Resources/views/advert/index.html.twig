@@ -10,30 +10,33 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Creationtime</th>
+                <th>Image name</th>
                 <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for advert in adverts %}
-            <tr>
-                <td><a href="{{ path('advert_show', { 'id': advert.id }) }}">{{ advert.id }}</a></td>
-                <td>{{ advert.title }}</td>
-                <td>{{ advert.description }}</td>
-                <td>{% if advert.creationTime %}{{ advert.creationTime|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ advert.image }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('advert_show', { 'id': advert.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('advert_edit', { 'id': advert.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for advert in adverts %}
+                <tr>
+                    <td><a href="{{ path('advert_show', { 'id': advert.id }) }}">{{ advert.id }}</a></td>
+                    <td>{{ advert.title }}</td>
+                    <td>{{ advert.description }}</td>
+                    <td>{% if advert.creationTime %}{{ advert.creationTime|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ advert.image }}</td>
+                    <td>    <img class="img-responsive" style="display: inline" alt="Add"
+                                 src="{{ asset('uploads/advert_img/' ~ advert.image) }}" width="50px" height="25px"/></td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('advert_show', { 'id': advert.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('advert_edit', { 'id': advert.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 

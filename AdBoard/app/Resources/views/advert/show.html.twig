@@ -37,8 +37,10 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    <img class="img-responsive" style="display: inline" alt="Add"
+         src="{{ asset('uploads/advert_img/' ~ advert.image) }}" width="500px" height="250px"/>
 {% endblock %}

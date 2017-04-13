@@ -7,6 +7,9 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    images_dir: '%kernel.root_dir%/../web/uploads/advert_img'
+    
+    
 
 framework:
     #esi: ~
@@ -18,7 +21,7 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
+    serializer: { enable_annotations: true }
     templating:
         engines: ['twig']
     default_locale: '%locale%'
@@ -72,3 +75,6 @@ fos_user:
     from_email:
         address: "gramk@poczta.fm"
         sender_name: "AdBoard"
+        
+
+

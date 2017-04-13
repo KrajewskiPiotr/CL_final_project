@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class MainController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function showMainAction()
     {

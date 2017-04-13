@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use AB\AdBoardBundle\Entity\Advert;
 
 class AdvertType extends AbstractType
 {
@@ -18,7 +20,7 @@ class AdvertType extends AbstractType
                 ->add('title')
                 ->add('description')
                 ->add('creationTime')
-                ->add('image')
+                ->add('image', FileType::class, array( 'label' => 'Add image', 'data_class' => null))
                 ->add('user')
                 ->add('category', EntityType::class, array(
                 'class' => 'AB\AdBoardBundle\Entity\Category',
@@ -32,7 +34,7 @@ class AdvertType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AB\AdBoardBundle\Entity\Advert'
+            'data_class' => Advert::class
         ));
     }
 
