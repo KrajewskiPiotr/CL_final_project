@@ -11,8 +11,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="AB\AdBoardBundle\Repository\CategoryRepository")
  */
-class Category
-{
+class Category {
+
     /**
      * @var int
      *
@@ -21,7 +21,7 @@ class Category
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Advert", mappedBy="category")
      *
@@ -35,14 +35,12 @@ class Category
      */
     private $name;
 
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -52,8 +50,7 @@ class Category
      * @param string $name
      * @return Category
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -64,15 +61,14 @@ class Category
      *
      * @return string 
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
+
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->adverts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -82,8 +78,7 @@ class Category
      * @param \AB\AdBoardBundle\Entity\Advert $adverts
      * @return Category
      */
-    public function addAdvert(\AB\AdBoardBundle\Entity\Advert $adverts)
-    {
+    public function addAdvert(\AB\AdBoardBundle\Entity\Advert $adverts) {
         $this->adverts[] = $adverts;
 
         return $this;
@@ -94,8 +89,7 @@ class Category
      *
      * @param \AB\AdBoardBundle\Entity\Advert $adverts
      */
-    public function removeAdvert(\AB\AdBoardBundle\Entity\Advert $adverts)
-    {
+    public function removeAdvert(\AB\AdBoardBundle\Entity\Advert $adverts) {
         $this->adverts->removeElement($adverts);
     }
 
@@ -104,8 +98,8 @@ class Category
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getAdverts()
-    {
+    public function getAdverts() {
         return $this->adverts;
     }
+
 }

@@ -3,6 +3,7 @@
 namespace AB\AdBoardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Category
@@ -66,5 +67,45 @@ class Category
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->adverts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add adverts
+     *
+     * @param \AB\AdBoardBundle\Entity\Advert $adverts
+     * @return Category
+     */
+    public function addAdvert(\AB\AdBoardBundle\Entity\Advert $adverts)
+    {
+        $this->adverts[] = $adverts;
+
+        return $this;
+    }
+
+    /**
+     * Remove adverts
+     *
+     * @param \AB\AdBoardBundle\Entity\Advert $adverts
+     */
+    public function removeAdvert(\AB\AdBoardBundle\Entity\Advert $adverts)
+    {
+        $this->adverts->removeElement($adverts);
+    }
+
+    /**
+     * Get adverts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAdverts()
+    {
+        return $this->adverts;
     }
 }

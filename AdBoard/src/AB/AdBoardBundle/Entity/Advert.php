@@ -1,18 +1,18 @@
 <?php
 
 namespace AB\AdBoardBundle\Entity;
- 
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Advert
  *
  * @ORM\Table(name="advert")
  * @ORM\Entity(repositoryClass="AB\AdBoardBundle\Repository\AdvertRepository")
  */
-class Advert
-{
+class Advert {
+
     /**
      * @var int
      *
@@ -35,33 +35,36 @@ class Advert
      * @ORM\Column(name="description", type="text", length=500)
      */
     private $description;
-    
+
     /**
      * @ORM\Column(name="creation_time", type="date")
      */
     private $creationTime;
-    
-        /**
+
+    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="adverts")
      * @ORM\JoinColumn(name="User_id", referencedColumnName="id")
      */
     private $user;
-    
-        /**
+
+    /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="adverts")
      * @ORM\JoinColumn(name="Category_id", referencedColumnName="id")
      */
     private $category;
-            
 
+    /**
+     *
+     * @ORM\Column(name="image", type="string")
+     */
+    private $image;
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -71,8 +74,7 @@ class Advert
      * @param string $title
      * @return Advert
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -83,8 +85,7 @@ class Advert
      *
      * @return string 
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -94,8 +95,7 @@ class Advert
      * @param string $description
      * @return Advert
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -106,8 +106,7 @@ class Advert
      *
      * @return string 
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -117,8 +116,7 @@ class Advert
      * @param \DateTime $creationTime
      * @return Advert
      */
-    public function setCreationTime($creationTime)
-    {
+    public function setCreationTime($creationTime) {
         $this->creationTime = $creationTime;
 
         return $this;
@@ -129,8 +127,7 @@ class Advert
      *
      * @return \DateTime 
      */
-    public function getCreationTime()
-    {
+    public function getCreationTime() {
         return $this->creationTime;
     }
 
@@ -140,8 +137,7 @@ class Advert
      * @param \AB\AdBoardBundle\Entity\User $user
      * @return Advert
      */
-    public function setUser(\AB\AdBoardBundle\Entity\User $user = null)
-    {
+    public function setUser(\AB\AdBoardBundle\Entity\User $user = null) {
         $this->user = $user;
 
         return $this;
@@ -152,8 +148,7 @@ class Advert
      *
      * @return \AB\AdBoardBundle\Entity\User 
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -163,8 +158,7 @@ class Advert
      * @param \AB\AdBoardBundle\Entity\Category $category
      * @return Advert
      */
-    public function setCategory(\AB\AdBoardBundle\Entity\Category $category = null)
-    {
+    public function setCategory(\AB\AdBoardBundle\Entity\Category $category = null) {
         $this->category = $category;
 
         return $this;
@@ -175,8 +169,29 @@ class Advert
      *
      * @return \AB\AdBoardBundle\Entity\Category 
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Advert
+     */
+    public function setImage($image) {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage() {
+        return $this->image;
+    }
+
 }
