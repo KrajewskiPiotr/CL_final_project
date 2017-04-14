@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    
+                        {% for advert in category.adverts if advert is not empty %}
+
+                        <tr>
+                            <td rowspan="2" width="30%">
+                                <a href="{{ path('show_ads_by_cat', { 'id': advert.id }) }}">
+                                    <img width="150px" height="100px"
+                                         src="{{ asset('uploads/advert_img/' ~ advert.image) }}"
+                                         alt="Advert pic"/>
+                                </a></td>
+                            <td><a
+                                        href="{{ path('show_ads_by_cat', { 'id': advert.id }) }}"><h2>
+                                        <em> {{ advert.title }} </em></h2></a>
+                            </td>
+
+                            <td width="19%">
+                                <p>
+                                    <span></span> {{ advert.user.username }}
+                                </p>
+                            </td>
+                        </tr>
+
+                    {% else %}
+                        <div> No addverts available :/</div>
+                    {% endfor %}
+    
+{% endblock %}

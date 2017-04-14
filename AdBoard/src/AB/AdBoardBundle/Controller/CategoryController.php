@@ -67,10 +67,27 @@ class CategoryController extends Controller
     {
         $deleteForm = $this->createDeleteForm($category);
 
-        return $this->render('category/show.html.twig', array(
+        return $this->render('category/showAllAds.html.twig', array(
             'category' => $category,
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+    /**
+     * 
+     * 
+     * @Route("/{id}/showAds", name="show_ads_by_cat")
+     * @Method("GET")
+     */
+    public function showAdAction(Category $category)
+    {
+        $deleteForm = $this->createDeleteForm($category);
+        
+        return $this->render('category/showAllAds.html.twig', array(
+            'category' => $category,
+            'delete_form' => $deleteForm->createView(),
+            
+        ));
+        
     }
 
     /**
