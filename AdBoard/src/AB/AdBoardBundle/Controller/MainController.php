@@ -19,12 +19,6 @@ class MainController extends Controller
         
         
     }
-        /**
-     * Lists all category entities.
-     *
-     * @Route("/", name="all_categories")
-     * @Method("GET")
-     */
 
 
 }

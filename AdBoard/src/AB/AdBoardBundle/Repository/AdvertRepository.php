@@ -19,5 +19,13 @@ class AdvertRepository extends EntityRepository {
                         ->setMaxResults($limit)
                         ->getResult();
     }
+    
+    public function lastTen(){
+        
+        return $this->getEntityManager()->createQuery('SELECT a FROM ABAdBoardBundle:Advert a ORDER BY a.creationTime')
+                ->setMaxResults(10)
+                ->getResult();
+        
+    }
 
 }

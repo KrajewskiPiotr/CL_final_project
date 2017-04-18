@@ -1,0 +1,5 @@
+{% for advert in adverts %}
+    <div><img class="img-responsive" style="display: inline" alt="Add"
+              src="{{ asset('uploads/advert_img/' ~ advert.image) }}" width="250px" height="125px"/></div>
+    <div><a href="{{ path('advert_show', {'id':advert.id}) }}">{{advert.title}}</a></div>
+    {% endfor %}

@@ -1,15 +1,13 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}ABAdBoardBundle:Main:showMain{% endblock %}
+{% block title %}AdBoard{% endblock %}
 
-{% block body %}
-    <h1>Welcome to the Main:showMain page<br><br>
-        -kategorie + lista 10 ostatnich ogłoszeń
-        
-        {{ render(controller(
-'ABAdBoardBundle:Category:index'
-))
-}}
+{% block cat %}
 
-    </h1>
+    {{ render(controller('ABAdBoardBundle:Category:index'))}}
+
+{% endblock %}
+
+{% block lastTen %}
+    {{ render(controller('ABAdBoardBundle:Advert:lastTenAdverts'))}}
 {% endblock %}
