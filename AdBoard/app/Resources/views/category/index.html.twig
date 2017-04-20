@@ -6,7 +6,8 @@
     <div class="btn-group btn-group-justified">
         {% for category in categories %}
 
-            <a class="btn btn-primary" href="{{ path('category_show', { 'id': category.id }) }}"> {{category.name}}</a>
+            <a class="btn btn-primary" href="{{ path('category_show', { 'id': category.id }) }}">
+                {{category.name}}({{ category.adverts|length }})</a>
 
         {% endfor %}
     </div>

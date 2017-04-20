@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 {% block body %}
-
+    <div style="justify-self: ;">
     {% for advert in category.adverts if advert is not empty %}
 
         <tr>
@@ -11,7 +11,7 @@
                          alt="Advert pic"/>
                 </a></td>
             <td><a
-                    href="{{ path('show_ads_by_cat', { 'id': advert.id }) }}"><h2>
+                        href="{{ path('show_ads_by_cat', { 'id': advert.id }) }}"><h2>
                         <em> {{ advert.title }} </em></h2></a>
             </td>
 
@@ -21,9 +21,9 @@
                 </p>
             </td>
         </tr>
-
+        </div>
     {% else %}
-        <div> No addverts available in category: {{category.name}}</div>
+        <div> No addverts available in category: {{ category.name }}</div>
     {% endfor %}
 
 {% endblock %}

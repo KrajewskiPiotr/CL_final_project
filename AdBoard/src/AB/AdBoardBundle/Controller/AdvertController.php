@@ -43,6 +43,8 @@ class AdvertController extends Controller {
      */
     public function newAction(Request $request) {
         $advert = new Advert();
+        $advert->setUser($this->getUser());
+        $advert->setCreationTime(new \DateTime());
         $form = $this->createForm('AB\AdBoardBundle\Form\AdvertType', $advert);
         $form->handleRequest($request);
 
@@ -91,9 +93,15 @@ class AdvertController extends Controller {
      */
     public function editAction(Request $request, Advert $advert) {
 
-        $advert->setImage(
-                new File($this->getParameter('images_dir') . '/' . $advert->getImage())
-        );
+
+        $oldImagePath = $this->getParameter('images_dir') . '/' . $advert->getImage();
+        $oldImageName = $advert->getImage();
+        $advert->setImage($oldImageName);
+        $image = new File($oldImagePath);
+        $advert->setImage($image);
+
+
+
         $deleteForm = $this->createDeleteForm($advert);
         $editForm = $this->createForm('AB\AdBoardBundle\Form\AdvertType', $advert);
         $editForm->handleRequest($request);

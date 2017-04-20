@@ -19,9 +19,7 @@ class AdvertType extends AbstractType
         $builder
                 ->add('title')
                 ->add('description')
-                ->add('creationTime')
                 ->add('image', FileType::class, array( 'label' => 'Add image', 'data_class' => null))
-                ->add('user')
                 ->add('category', EntityType::class, array(
                 'class' => 'AB\AdBoardBundle\Entity\Category',
                 'choice_label' => 'name',

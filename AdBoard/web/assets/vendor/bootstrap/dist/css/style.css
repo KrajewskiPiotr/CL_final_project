@@ -78,3 +78,16 @@ input:focus {
     display: block;
     margin-top: 12px;
 }
+
+.advTable {
+    border: 2px groove;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.adTitle {
+
+    font-size: x-large;
+    text-align: center;
+    ;
+}
