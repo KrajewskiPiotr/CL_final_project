@@ -61,6 +61,11 @@ class Advert {
     private $image;
 
     /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="advert")
+     */
+    private $comments;
+
+    /**
      * Get id
      *
      * @return integer 

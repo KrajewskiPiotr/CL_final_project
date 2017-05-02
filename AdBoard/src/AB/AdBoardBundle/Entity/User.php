@@ -25,6 +25,11 @@ class User extends BaseUser {
      */
     private $adverts;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+     */
+    private $comments;
+
     public function __construct() {
         parent::__construct();
         // your own logic
