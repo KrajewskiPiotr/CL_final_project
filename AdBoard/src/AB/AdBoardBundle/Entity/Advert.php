@@ -12,7 +12,8 @@ use Doctrine\ORM\EntityManager;
  * @ORM\Table(name="advert")
  * @ORM\Entity(repositoryClass="AB\AdBoardBundle\Repository\AdvertRepository")
  */
-class Advert {
+class Advert
+{
 
     /**
      * @var int
@@ -38,7 +39,7 @@ class Advert {
     private $description;
 
     /**
-     * @ORM\Column(name="creation_time", type="date")
+     * @ORM\Column(name="creation_time", type="datetime")
      */
     private $creationTime;
 
@@ -68,9 +69,10 @@ class Advert {
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -80,7 +82,8 @@ class Advert {
      * @param string $title
      * @return Advert
      */
-    public function setTitle($title) {
+    public function setTitle($title)
+    {
         $this->title = $title;
 
         return $this;
@@ -89,9 +92,10 @@ class Advert {
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->title;
     }
 
@@ -101,7 +105,8 @@ class Advert {
      * @param string $description
      * @return Advert
      */
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
 
         return $this;
@@ -110,9 +115,10 @@ class Advert {
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
@@ -122,7 +128,8 @@ class Advert {
      * @param \DateTime $creationTime
      * @return Advert
      */
-    public function setCreationTime($creationTime) {
+    public function setCreationTime($creationTime)
+    {
         $this->creationTime = $creationTime;
 
         return $this;
@@ -131,9 +138,10 @@ class Advert {
     /**
      * Get creationTime
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getCreationTime() {
+    public function getCreationTime()
+    {
         return $this->creationTime;
     }
 
@@ -143,7 +151,8 @@ class Advert {
      * @param \AB\AdBoardBundle\Entity\User $user
      * @return Advert
      */
-    public function setUser(\AB\AdBoardBundle\Entity\User $user = null) {
+    public function setUser(\AB\AdBoardBundle\Entity\User $user = null)
+    {
         $this->user = $user;
 
         return $this;
@@ -152,9 +161,10 @@ class Advert {
     /**
      * Get user
      *
-     * @return \AB\AdBoardBundle\Entity\User 
+     * @return \AB\AdBoardBundle\Entity\User
      */
-    public function getUser() {
+    public function getUser()
+    {
         return $this->user;
     }
 
@@ -164,7 +174,8 @@ class Advert {
      * @param \AB\AdBoardBundle\Entity\Category $category
      * @return Advert
      */
-    public function setCategory(\AB\AdBoardBundle\Entity\Category $category = null) {
+    public function setCategory(\AB\AdBoardBundle\Entity\Category $category = null)
+    {
         $this->category = $category;
 
         return $this;
@@ -173,9 +184,10 @@ class Advert {
     /**
      * Get category
      *
-     * @return \AB\AdBoardBundle\Entity\Category 
+     * @return \AB\AdBoardBundle\Entity\Category
      */
-    public function getCategory() {
+    public function getCategory()
+    {
         return $this->category;
     }
 
@@ -185,7 +197,8 @@ class Advert {
      * @param string $image
      * @return Advert
      */
-    public function setImage($image) {
+    public function setImage($image)
+    {
         $this->image = $image;
 
         return $this;
@@ -194,10 +207,51 @@ class Advert {
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
-    public function getImage() {
+    public function getImage()
+    {
         return $this->image;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \AB\AdBoardBundle\Entity\Comment $comments
+     * @return Advert
+     */
+    public function addComment(\AB\AdBoardBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \AB\AdBoardBundle\Entity\Comment $comments
+     */
+    public function removeComment(\AB\AdBoardBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }

@@ -5,7 +5,8 @@ namespace AB\AdBoardBundle\Controller;
 use AB\AdBoardBundle\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Comment controller.
@@ -40,6 +41,9 @@ class CommentController extends Controller
     public function newAction(Request $request)
     {
         $comment = new Comment();
+        $comment->setUser($this->getUser());
+        $comment->setCreationDate(new \DateTime());
+
         $form = $this->createForm('AB\AdBoardBundle\Form\CommentType', $comment);
         $form->handleRequest($request);
 
@@ -130,7 +134,6 @@ class CommentController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comment_delete', array('id' => $comment->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

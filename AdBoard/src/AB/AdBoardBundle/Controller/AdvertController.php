@@ -17,7 +17,8 @@ use AB\AdBoardBundle\Repository\AdvertRepository;
  *
  * @Route("advert")
  */
-class AdvertController extends Controller {
+class AdvertController extends Controller
+{
 
     /**
      * Lists all advert entities.
@@ -25,13 +26,14 @@ class AdvertController extends Controller {
      * @Route("/", name="advert_index")
      * @Method("GET")
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $em = $this->getDoctrine()->getManager();
 
         $adverts = $em->getRepository('ABAdBoardBundle:Advert')->findAll();
 
         return $this->render('advert/index.html.twig', array(
-                    'adverts' => $adverts,
+            'adverts' => $adverts,
         ));
     }
 
@@ -41,7 +43,8 @@ class AdvertController extends Controller {
      * @Route("/new", name="advert_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request) {
+    public function newAction(Request $request)
+    {
         $advert = new Advert();
         $advert->setUser($this->getUser());
         $advert->setCreationTime(new \DateTime());
@@ -65,8 +68,8 @@ class AdvertController extends Controller {
         }
 
         return $this->render('advert/new.html.twig', array(
-                    'advert' => $advert,
-                    'form' => $form->createView(),
+            'advert' => $advert,
+            'form' => $form->createView(),
         ));
     }
 
@@ -76,12 +79,13 @@ class AdvertController extends Controller {
      * @Route("/{id}", name="advert_show")
      * @Method("GET")
      */
-    public function showAction(Advert $advert) {
+    public function showAction(Advert $advert)
+    {
         $deleteForm = $this->createDeleteForm($advert);
 
         return $this->render('advert/show.html.twig', array(
-                    'advert' => $advert,
-                    'delete_form' => $deleteForm->createView(),
+            'advert' => $advert,
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -91,7 +95,8 @@ class AdvertController extends Controller {
      * @Route("/{id}/edit", name="advert_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Advert $advert) {
+    public function editAction(Request $request, Advert $advert)
+    {
 
 
         $oldImagePath = $this->getParameter('images_dir') . '/' . $advert->getImage();
@@ -99,7 +104,6 @@ class AdvertController extends Controller {
         $advert->setImage($oldImageName);
         $image = new File($oldImagePath);
         $advert->setImage($image);
-
 
 
         $deleteForm = $this->createDeleteForm($advert);
@@ -113,9 +117,9 @@ class AdvertController extends Controller {
         }
 
         return $this->render('advert/edit.html.twig', array(
-                    'advert' => $advert,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+            'advert' => $advert,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -125,7 +129,8 @@ class AdvertController extends Controller {
      * @Route("/{id}", name="advert_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Advert $advert) {
+    public function deleteAction(Request $request, Advert $advert)
+    {
         $form = $this->createDeleteForm($advert);
         $form->handleRequest($request);
 
@@ -145,21 +150,23 @@ class AdvertController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Advert $advert) {
+    private function createDeleteForm(Advert $advert)
+    {
         return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('advert_delete', array('id' => $advert->getId())))
-                        ->setMethod('DELETE')
-                        ->getForm();
+            ->setAction($this->generateUrl('advert_delete', array('id' => $advert->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
     }
 
     /**
      * @Route("/last/Ten", name="last_ten")
      */
-    public function LastTenAdvertsAction() {
+    public function LastTenAdvertsAction()
+    {
         $em = $this->getDoctrine()->getRepository('ABAdBoardBundle:Advert');
         $adverts = $em->lastTen();
         return $this->render('advert/lastTen.html.twig', array(
-                    'adverts' => $adverts
+            'adverts' => $adverts
         ));
     }
 

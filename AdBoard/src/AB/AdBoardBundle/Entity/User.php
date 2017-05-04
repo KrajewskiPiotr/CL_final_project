@@ -68,4 +68,37 @@ class User extends BaseUser {
     {
         return $this->adverts;
     }
+
+    /**
+     * Add comments
+     *
+     * @param \AB\AdBoardBundle\Entity\Comment $comments
+     * @return User
+     */
+    public function addComment(\AB\AdBoardBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \AB\AdBoardBundle\Entity\Comment $comments
+     */
+    public function removeComment(\AB\AdBoardBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }

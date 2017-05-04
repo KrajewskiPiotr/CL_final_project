@@ -13,11 +13,28 @@
         </tr>
         <tr>
             <td class="advTable adTitle">{{ advert.title }}</td>
-            <td class="advTable">{% if advert.creationTime %}{{ advert.creationTime|date('Y-m-d') }}{% endif %}</td>
+            <td class="advTable">{% if advert.creationTime %}{{ advert.creationTime|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
             <td class="advTable" colspan="2">{{ advert.description }}</td>
         </tr>
+        <tr>
+            <td class="advTable" colspan="2">
+                {% for comment in advert.comments %}
+                    {% if comment is not empty %}
+                        {{ comment.text }}
+                        {{ comment.creationDate|date('Y-m-d H:i:s') }}
+                        {{ comment.user.username }}
+                    {% else %}
+                        ---
+                    {% endif %}
+                {% endfor %}
+                <a href="{{ path("comment_new") }}">
+                    <button class="btn">Add comment</button>
+                </a>
+            </td>
+        </tr>
+
 
         </tbody>
     </table>

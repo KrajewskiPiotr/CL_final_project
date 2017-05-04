@@ -4,6 +4,7 @@ namespace AB\AdBoardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Advert
@@ -37,7 +38,7 @@ class Advert {
     private $description;
 
     /**
-     * @ORM\Column(name="creation_time", type="date")
+     * @ORM\Column(name="creation_time", type="datetime")
      */
     private $creationTime;
 
@@ -58,6 +59,11 @@ class Advert {
      * @ORM\Column(name="image", type="string")
      */
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="advert")
+     */
+    private $comments;
 
     /**
      * Get id
