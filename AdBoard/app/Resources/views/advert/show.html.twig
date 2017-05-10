@@ -25,11 +25,12 @@
                         {{ comment.text }}
                         {{ comment.creationDate|date('Y-m-d H:i:s') }}
                         {{ comment.user.username }}
+                        <hr>
                     {% else %}
                         ---
                     {% endif %}
                 {% endfor %}
-                <a href="{{ path("comment_new") }}">
+                <a href="{{ path("comment_new", {'id' : advert.id}) }}">
                     <button class="btn">Add comment</button>
                 </a>
             </td>

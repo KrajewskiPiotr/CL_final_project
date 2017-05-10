@@ -3,6 +3,7 @@
 namespace AB\AdBoardBundle\Controller;
 
 use AB\AdBoardBundle\Entity\Comment;
+use AB\AdBoardBundle\Entity\Advert;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -35,13 +36,20 @@ class CommentController extends Controller
     /**
      * Creates a new comment entity.
      *
-     * @Route("/new", name="comment_new")
+     * @Route("/new/{id}", defaults={"id" = 0}, name="comment_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id)
     {
+
         $comment = new Comment();
-        $comment->setUser($this->getUser());
+
+        /** @var Advert $advert */
+        $advert = $this->getDoctrine()->getRepository('ABAdBoardBundle:Advert')->find($id);
+
+        $user = $this->getUser();
+        $comment->setAdvert($advert);
+        $comment->setUser($user);
         $comment->setCreationDate(new \DateTime());
 
         $form = $this->createForm('AB\AdBoardBundle\Form\CommentType', $comment);
@@ -52,7 +60,7 @@ class CommentController extends Controller
             $em->persist($comment);
             $em->flush();
 
-            return $this->redirectToRoute('comment_show', array('id' => $comment->getId()));
+            return $this->redirectToRoute('advert_show', array('id' => $advert->getId()));
         }
 
         return $this->render('comment/new.html.twig', array(

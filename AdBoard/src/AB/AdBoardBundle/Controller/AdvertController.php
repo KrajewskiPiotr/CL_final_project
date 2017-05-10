@@ -1,7 +1,7 @@
 <?php
 
 namespace AB\AdBoardBundle\Controller;
-
+use AB\AdBoardBundle\Entity\Comment;
 use AB\AdBoardBundle\Entity\Advert;
 use AB\AdBoardBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
